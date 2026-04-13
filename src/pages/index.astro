@@ -1,17 +1,172 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- ─── HEADER ─────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a href="#accueil" class="header-logo">
+        <img src="/logo.png" alt="Logo 12 Pouces" />
+        12 Pouces
+      </a>
+      <nav>
+        <a href="#atelier">L'atelier</a>
+        <a href="#ateliers">Ateliers</a>
+        <a href="#localisation">Où ?</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────── -->
+  <section id="accueil">
+    <img src="/logo.png" alt="12 Pouces" class="hero-logo" />
+    <h1>Atelier Cycle Participatif</h1>
+    <p class="subtitle">& Familial — Paris 12e</p>
+    <div class="hero-badges">
+      <span class="badge">DIY</span>
+      <span class="badge outline">Gratuit</span>
+      <span class="badge">Tous niveaux</span>
+      <span class="badge outline">Familles bienvenues</span>
+    </div>
+    <a href="#ateliers" class="btn">Voir les prochains ateliers</a>
+  </section>
+
+  <!-- ─── L'ATELIER ────────────────────────────────────── -->
+  <section id="atelier">
+    <div class="container">
+      <div class="atelier-text">
+        <p class="section-label">Qui sommes-nous ?</p>
+        <h2 class="section-title">On répare <span>ensemble</span>, on apprend ensemble</h2>
+        <p>
+          12 Pouces, c'est un atelier d'auto-réparation vélo participatif et familial, niché dans le 12e arrondissement de Paris.
+        </p>
+        <p>
+          Ici, pas de mécanicien qui répare à ta place : on t'accompagne, on t'explique, et c'est toi qui mets les mains dans le cambouis. L'idée, c'est de repartir avec un vélo qui roule <em>et</em> les compétences pour le garder en état.
+        </p>
+        <ul class="atelier-features">
+          <li>Ouvert à tous, aucune expérience requise</li>
+          <li>Outils mis à disposition gratuitement</li>
+          <li>Bénévoles présents pour guider et conseiller</li>
+          <li>Ambiance conviviale, familles et enfants bienvenus</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Nous contacter</a>
+      </div>
+      <div class="atelier-visual">
+        <img src="/logo.png" alt="12 Pouces" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ATELIERS ──────────────────────────────────────── -->
+  <section id="ateliers">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Agenda</p>
+        <h2 class="section-title">Prochains <span style="color: var(--indigo)">ateliers</span></h2>
+      </div>
+      <div class="sessions-grid">
+        <div class="session-card">
+          <div class="session-date">19</div>
+          <div class="session-month">Avril 2025</div>
+          <div class="session-info">
+            <strong>10h – 13h</strong><br />
+            Kiosque Citoyen<br />
+            Place Félix Eboué, Paris 12e
+          </div>
+        </div>
+        <div class="session-card">
+          <div class="session-date">03</div>
+          <div class="session-month">Mai 2025</div>
+          <div class="session-info">
+            <strong>10h – 13h</strong><br />
+            Kiosque Citoyen<br />
+            Place Félix Eboué, Paris 12e
+          </div>
+        </div>
+        <div class="session-card">
+          <div class="session-date">17</div>
+          <div class="session-month">Mai 2025</div>
+          <div class="session-info">
+            <strong>10h – 13h</strong><br />
+            Kiosque Citoyen<br />
+            Place Félix Eboué, Paris 12e
+          </div>
+        </div>
+      </div>
+      <p class="sessions-note">
+        Les ateliers ont lieu 1 à 2 fois par mois. Pas besoin de réserver, viens avec ton vélo !
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── LOCALISATION ──────────────────────────────────── -->
+  <section id="localisation">
+    <div class="container">
+      <div>
+        <p class="section-label">Où nous trouver</p>
+        <h2 class="section-title">Au cœur du 12e</h2>
+        <div class="location-details">
+          <div class="location-item">
+            <div class="location-icon">📍</div>
+            <div class="location-item-text">
+              <strong>Kiosque Citoyen</strong>
+              <span>Place Félix Eboué, 75012 Paris</span>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-icon">🚇</div>
+            <div class="location-item-text">
+              <strong>Métro Daumesnil</strong>
+              <span>Lignes 6 et 8</span>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-icon">🕙</div>
+            <div class="location-item-text">
+              <strong>10h – 13h</strong>
+              <span>1 à 2 fois par mois, consulte l'agenda</span>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-icon">🚲</div>
+            <div class="location-item-text">
+              <strong>Viens avec ton vélo !</strong>
+              <span>Aucune réservation nécessaire</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=2.3870%2C48.8370%2C2.3970%2C48.8430&layer=mapnik&marker=48.8400%2C2.3920"
+          title="Place Félix Eboué, Paris 12e"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Restons en contact</p>
+      <h2 class="section-title">Une question ? Un vélo à réparer ?</h2>
+      <p>
+        Écris-nous ou retrouve-nous directement à l'atelier. On est là pour aider, conseiller et partager la bonne humeur.
+      </p>
+      <div class="contact-actions">
+        <a href="mailto:contact@12pouces.fr" class="btn">Nous écrire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <strong>12 Pouces</strong> — Atelier Cycle Participatif & Familial · Paris 12e<br />
+    <span style="font-size: 0.8rem; margin-top: 0.5rem; display: block;">
+      Kiosque Citoyen, Place Félix Eboué · 75012 Paris
+    </span>
+  </footer>
+</Layout>

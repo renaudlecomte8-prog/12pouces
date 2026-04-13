@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --indigo: #4B5498;
+  --indigo-dark: #363d74;
+  --indigo-light: #6b76c4;
+  --white: #ffffff;
+  --black: #1a1a1a;
+  --gray: #6b7280;
+  --gray-light: #f4f5f9;
+  --accent: #e8eaf6;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Baloo 2', cursive;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  padding: 5rem 1.5rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--indigo);
+  color: var(--white);
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--indigo-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--indigo);
+  color: var(--indigo);
+}
+
+.btn-outline:hover {
+  background: var(--indigo);
+  color: var(--white);
+}
+
+/* ─── HEADER ─────────────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 2px solid var(--accent);
+  padding: 0.75rem 1.5rem;
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--indigo);
+}
+
+.header-logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+nav a {
+  color: var(--black);
+  transition: color 0.2s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--indigo);
+  transition: width 0.2s;
+}
+
+nav a:hover {
+  color: var(--indigo);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+#accueil {
+  background: var(--gray-light);
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.hero-logo {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 4px 16px rgba(75, 84, 152, 0.2));
+}
+
+#accueil h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--indigo);
+  margin-bottom: 0.5rem;
+}
+
+#accueil .subtitle {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.25rem;
+  color: var(--gray);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  background: var(--indigo);
+  color: var(--white);
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  letter-spacing: 0.03em;
+}
+
+.badge.outline {
+  background: transparent;
+  border: 2px solid var(--indigo);
+  color: var(--indigo);
+}
+
+/* ─── L'ATELIER ──────────────────────────────────────── */
+#atelier {
+  background: var(--white);
+}
+
+#atelier .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.section-label {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--indigo);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: var(--black);
+  margin-bottom: 1.25rem;
+}
+
+.section-title span {
+  color: var(--indigo);
+}
+
+.atelier-text p {
+  color: var(--gray);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.atelier-features {
+  list-style: none;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.atelier-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.atelier-features li::before {
+  content: '✦';
+  color: var(--indigo);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.atelier-visual {
+  background: var(--accent);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.atelier-visual img {
+  width: 180px;
+  object-fit: contain;
+}
+
+/* ─── ATELIERS ───────────────────────────────────────── */
+#ateliers {
+  background: var(--gray-light);
+}
+
+#ateliers .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.session-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 2px solid var(--accent);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.session-card:hover {
+  border-color: var(--indigo-light);
+  transform: translateY(-3px);
+}
+
+.session-date {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--indigo);
+  line-height: 1;
+}
+
+.session-month {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--indigo-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.session-info {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.session-info strong {
+  color: var(--black);
+}
+
+.sessions-note {
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+/* ─── LOCALISATION ───────────────────────────────────── */
+#localisation {
+  background: var(--indigo);
+  color: var(--white);
+}
+
+#localisation .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+#localisation .section-label {
+  color: var(--indigo-light);
+}
+
+#localisation .section-title {
+  color: var(--white);
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.location-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.location-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.location-item-text strong {
+  display: block;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.location-item-text span {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.map-embed {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.2);
+  height: 300px;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ─── CONTACT ────────────────────────────────────────── */
+#contact {
+  background: var(--white);
+  text-align: center;
+}
+
+#contact .section-title {
+  margin-bottom: 1rem;
+}
+
+#contact p {
+  color: var(--gray);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+footer strong {
+  color: var(--white);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 700px) {
+  nav {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  #atelier .container,
+  #localisation .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .atelier-visual {
+    display: none;
+  }
+}
