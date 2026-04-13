@@ -156,8 +156,8 @@ nav a:hover::after {
 }
 
 .hero-logo {
-  width: 220px;
-  height: 220px;
+  width: min(660px, 90vw);
+  height: auto;
   object-fit: contain;
   margin-bottom: 2rem;
   filter: drop-shadow(0 4px 16px rgba(75, 84, 152, 0.2));
