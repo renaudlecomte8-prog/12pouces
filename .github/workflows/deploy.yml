@@ -35,7 +35,7 @@ jobs:
 
       # Bicloud = SFTP only (pas de shell) → action SFTP pur, surtout pas rsync.
       - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USER }}
@@ -43,3 +43,4 @@ jobs:
           local_path: './dist/*'
           remote_path: '/www'
           sftp_only: true
+          sftpArgs: '-o ConnectTimeout=10 -o StrictHostKeyChecking=no'
