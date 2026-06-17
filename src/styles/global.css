@@ -334,6 +334,32 @@ nav a:hover::after {
   color: var(--black);
 }
 
+/* États d'exception (édités au CMS) */
+.session-card--annule {
+  border-color: var(--gray);
+  opacity: 0.7;
+}
+
+.session-card--annule .session-date,
+.session-card--annule .session-month {
+  text-decoration: line-through;
+}
+
+.session-card--special {
+  border-color: var(--indigo);
+}
+
+.session-statut {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-weight: 700;
+  color: var(--indigo);
+}
+
+.session-card--annule .session-statut {
+  color: var(--gray);
+}
+
 .sessions-note {
   text-align: center;
   color: var(--gray);

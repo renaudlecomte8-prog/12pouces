@@ -1,5 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import content from '../data/content.json';
+import { nextSecondSaturdays } from '../lib/agenda.js';
+
+// Agenda auto-calculé (2ème samedi du mois) + fusion avec les exceptions éditées au CMS.
+const ateliers = nextSecondSaturdays(3).map((d) => {
+  const exc = content.exceptions.find(
+    (e) => Number(e.annee) === d.year && Number(e.mois) === d.month
+  );
+  return {
+    ...d,
+    statut: exc?.statut ?? 'normal',
+    note: exc?.note ?? '',
+  };
+});
 ---
 
 <Layout>
@@ -39,17 +53,9 @@ import Layout from '../layouts/Layout.astro';
       <div class="atelier-text">
         <p class="section-label">Qui sommes-nous ?</p>
         <h2 class="section-title">On répare <span>ensemble</span>, on apprend ensemble</h2>
-        <p>
-          12 Pouces, c'est un atelier d'auto-réparation vélo participatif et familial, niché dans le 12e arrondissement de Paris.
-        </p>
-        <p>
-          Ici, pas de mécanicien qui répare à ta place : on t'accompagne, on t'explique, et c'est toi qui mets les mains dans le cambouis. L'idée, c'est de repartir avec un vélo qui roule <em>et</em> les compétences pour le garder en état.
-        </p>
+        {content.intro_paragraphes.map((p) => <p>{p}</p>)}
         <ul class="atelier-features">
-          <li>Ouvert à tous, aucune expérience requise</li>
-          <li>Accès & prix libre · adhésion 10 €/an (accès atelier + outils)</li>
-          <li>Bénévoles présents pour guider et conseiller</li>
-          <li>Ambiance conviviale, familles et enfants bienvenus</li>
+          {content.features.map((f) => <li>{f}</li>)}
         </ul>
         <a href="#contact" class="btn btn-outline">Nous contacter</a>
       </div>
@@ -67,33 +73,28 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="section-title">Prochains <span style="color: var(--indigo)">ateliers</span></h2>
       </div>
       <div class="sessions-grid">
-        <div class="session-card">
-          <div class="session-date">11</div>
-          <div class="session-month">Juillet 2026</div>
-          <div class="session-info">
-            <strong>Samedi · 14h – 18h</strong><br />
-            Place Félix Eboué<br />
-            Paris 12e
+        {ateliers.map((a) => (
+          <div class={`session-card${a.statut === 'annule' ? ' session-card--annule' : ''}${a.statut === 'special' ? ' session-card--special' : ''}`}>
+            <div class="session-date">{a.day}</div>
+            <div class="session-month">{a.monthName} {a.year}</div>
+            <div class="session-info">
+              {a.statut === 'annule' ? (
+                <strong class="session-statut">Annulé</strong>
+              ) : (
+                <strong>{content.atelier.horaire}</strong>
+              )}<br />
+              {a.statut === 'annule' ? (
+                a.note && <span>{a.note}</span>
+              ) : (
+                <Fragment>
+                  {content.atelier.lieu_ligne1}<br />
+                  {content.atelier.lieu_ligne2}
+                  {a.statut === 'special' && a.note && <Fragment><br /><span class="session-statut">{a.note}</span></Fragment>}
+                </Fragment>
+              )}
+            </div>
           </div>
-        </div>
-        <div class="session-card">
-          <div class="session-date">8</div>
-          <div class="session-month">Août 2026</div>
-          <div class="session-info">
-            <strong>Samedi · 14h – 18h</strong><br />
-            Place Félix Eboué<br />
-            Paris 12e
-          </div>
-        </div>
-        <div class="session-card">
-          <div class="session-date">12</div>
-          <div class="session-month">Septembre 2026</div>
-          <div class="session-info">
-            <strong>Samedi · 14h – 18h</strong><br />
-            Place Félix Eboué<br />
-            Paris 12e
-          </div>
-        </div>
+        ))}
       </div>
       <p class="sessions-note">
         L'atelier a lieu le <strong>2ème samedi de chaque mois</strong> sur la place Félix Eboué. Pas besoin de réserver, viens avec ton vélo !
@@ -111,21 +112,21 @@ import Layout from '../layouts/Layout.astro';
           <div class="location-item">
             <div class="location-icon">📍</div>
             <div class="location-item-text">
-              <strong>Kiosque Citoyen</strong>
-              <span>Place Félix Eboué, 75012 Paris</span>
+              <strong>{content.contact.lieu_nom}</strong>
+              <span>{content.contact.adresse}</span>
             </div>
           </div>
           <div class="location-item">
             <div class="location-icon">🚇</div>
             <div class="location-item-text">
-              <strong>Métro Daumesnil</strong>
-              <span>Lignes 6 et 8</span>
+              <strong>{content.contact.metro_station}</strong>
+              <span>{content.contact.metro_lignes}</span>
             </div>
           </div>
           <div class="location-item">
             <div class="location-icon">🕙</div>
             <div class="location-item-text">
-              <strong>14h – 18h</strong>
+              <strong>{content.contact.horaires}</strong>
               <span>Le 2ème samedi de chaque mois</span>
             </div>
           </div>
@@ -157,8 +158,8 @@ import Layout from '../layouts/Layout.astro';
         Écris-nous ou retrouve-nous directement à l'atelier. On est là pour aider, conseiller et partager la bonne humeur.
       </p>
       <div class="contact-actions">
-        <a href="mailto:associationdouzepouces@gmail.com" class="btn">Nous écrire</a>
-        <a href="https://www.instagram.com/12pouces" class="btn btn-outline" target="_blank" rel="noopener">Instagram @12pouces</a>
+        <a href={`mailto:${content.contact.email}`} class="btn">Nous écrire</a>
+        <a href={`https://www.instagram.com/${content.contact.instagram_handle}`} class="btn btn-outline" target="_blank" rel="noopener">Instagram @{content.contact.instagram_handle}</a>
       </div>
     </div>
   </section>
