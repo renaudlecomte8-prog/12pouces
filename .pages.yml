@@ -10,10 +10,6 @@ content:
     fields:
       - name: ateliers
         label: Dates des ateliers
-        description: >-
-          Gère librement ton calendrier : ajoute, modifie, réordonne ou
-          supprime une date — n'importe quel jour (pas seulement le samedi).
-          Seules les dates à venir s'affichent sur le site, triées dans l'ordre.
         type: object
         list: true
         fields:
