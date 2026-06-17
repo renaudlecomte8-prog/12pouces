@@ -1,0 +1,45 @@
+name: Build & Deploy (SFTP Bicloud)
+
+on:
+  push:
+    branches: [main]
+  # Rebuild mensuel : fait avancer l'agenda (2ème samedi) sans aucune action.
+  schedule:
+    - cron: '0 4 1 * *'
+  # Déclenchement manuel depuis l'onglet Actions.
+  workflow_dispatch:
+
+# Évite deux déploiements concurrents.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Bicloud = SFTP only (pas de shell) → action SFTP pur, surtout pas rsync.
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          ssh_private_key: ${{ secrets.SFTP_KEY }}
+          local_path: './dist/*'
+          remote_path: '/www'
+          sftp_only: true

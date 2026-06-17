@@ -1,0 +1,27 @@
+{
+  "exceptions": [],
+  "atelier": {
+    "horaire": "Samedi · 14h – 18h",
+    "lieu_ligne1": "Place Félix Eboué",
+    "lieu_ligne2": "Paris 12e"
+  },
+  "intro_paragraphes": [
+    "12 Pouces, c'est un atelier d'auto-réparation vélo participatif et familial, niché dans le 12e arrondissement de Paris.",
+    "Ici, pas de mécanicien qui répare à ta place : on t'accompagne, on t'explique, et c'est toi qui mets les mains dans le cambouis. L'idée, c'est de repartir avec un vélo qui roule et les compétences pour le garder en état."
+  ],
+  "features": [
+    "Ouvert à tous, aucune expérience requise",
+    "Accès & prix libre · adhésion 10 €/an (accès atelier + outils)",
+    "Bénévoles présents pour guider et conseiller",
+    "Ambiance conviviale, familles et enfants bienvenus"
+  ],
+  "contact": {
+    "email": "associationdouzepouces@gmail.com",
+    "instagram_handle": "12pouces",
+    "lieu_nom": "Kiosque Citoyen",
+    "adresse": "Place Félix Eboué, 75012 Paris",
+    "metro_station": "Métro Daumesnil",
+    "metro_lignes": "Lignes 6 et 8",
+    "horaires": "14h – 18h"
+  }
+}

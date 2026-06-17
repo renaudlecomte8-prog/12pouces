@@ -1,0 +1,54 @@
+media:
+  input: public
+  output: /
+
+content:
+  - name: contenu
+    label: Contenu du site
+    type: file
+    path: src/data/content.json
+    fields:
+      - name: exceptions
+        label: Exceptions d'agenda
+        description: >-
+          Par défaut, l'atelier a lieu le 2ème samedi de chaque mois (dates
+          calculées automatiquement). Ajoute une exception ici seulement pour
+          annuler un atelier ou signaler une séance spéciale sur un mois donné.
+        type: object
+        list: true
+        fields:
+          - { name: annee, label: Année, type: number }
+          - { name: mois, label: Mois (1 = janvier … 12 = décembre), type: number }
+          - name: statut
+            label: Statut
+            type: select
+            options:
+              values: [normal, annule, special]
+            default: special
+          - { name: note, label: Note affichée, type: string }
+      - name: atelier
+        label: Atelier (valeurs par défaut)
+        type: object
+        fields:
+          - { name: horaire, label: Horaire, type: string }
+          - { name: lieu_ligne1, label: Lieu — ligne 1, type: string }
+          - { name: lieu_ligne2, label: Lieu — ligne 2, type: string }
+      - name: intro_paragraphes
+        label: Paragraphes de présentation
+        type: text
+        list: true
+      - name: features
+        label: Points clés (liste à puces)
+        type: string
+        list: true
+      - name: contact
+        label: Contact & accès
+        type: object
+        fields:
+          - { name: email, label: Email, type: string }
+          - { name: instagram_handle, label: Instagram (sans le @), type: string }
+          - { name: lieu_nom, label: Nom du lieu, type: string }
+          - { name: adresse, label: Adresse, type: string }
+          - { name: metro_station, label: Station de métro, type: string }
+          - { name: metro_lignes, label: Lignes de métro, type: string }
+          - { name: horaires, label: Horaires, type: string }
