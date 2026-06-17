@@ -1,4 +1,12 @@
 {
+  "exceptions": [
+    {
+      "annee": 2026,
+      "mois": 7,
+      "statut": "special",
+      "note": "barbecue vélo grillé"
+    }
+  ],
   "atelier": {
     "horaire": "samedi · 14h02 – 18h02",
     "lieu_ligne1": "Place Félix Eboué",
