@@ -1,10 +1,32 @@
-// Calcul automatique des dates d'atelier : le 2ème samedi de chaque mois.
-// Aucune date n'est saisie à la main — elles roulent toutes seules à chaque build.
+// Aide à l'agenda des ateliers.
+// Les dates sont gérées librement au CMS (n'importe quel jour). En l'absence de
+// dates saisies, on propose automatiquement les prochains 2èmes samedis (filet de sécurité).
 
 const MOIS_FR = [
   'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre',
 ];
+
+const JOURS_FR = [
+  'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi',
+];
+
+const pad = (n) => String(n).padStart(2, '0');
+
+// Décompose une date ISO "YYYY-MM-DD" en éléments d'affichage FR.
+// Parsing manuel pour éviter tout décalage de fuseau horaire.
+export function formatDate(iso) {
+  const [year, month, day] = iso.split('-').map(Number);
+  const dt = new Date(year, month - 1, day);
+  return {
+    iso,
+    day,
+    month, // 1-12
+    year,
+    monthName: MOIS_FR[month - 1],
+    weekday: JOURS_FR[dt.getDay()],
+  };
+}
 
 // Renvoie le 2ème samedi d'un mois donné (year, month0 = 0-11).
 function secondSaturday(year, month0) {
@@ -24,12 +46,7 @@ export function nextSecondSaturdays(count = 3, from = new Date()) {
   while (dates.length < count) {
     const d = secondSaturday(year, month0);
     if (d >= today) {
-      dates.push({
-        day: d.getDate(),
-        month: month0 + 1, // 1-12 (aligné sur la saisie CMS)
-        year: d.getFullYear(),
-        monthName: MOIS_FR[month0],
-      });
+      dates.push(`${d.getFullYear()}-${pad(month0 + 1)}-${pad(d.getDate())}`);
     }
     month0 += 1;
     if (month0 > 11) {

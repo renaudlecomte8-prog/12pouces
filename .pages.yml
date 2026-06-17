@@ -8,29 +8,24 @@ content:
     type: file
     path: src/data/content.json
     fields:
-      - name: exceptions
-        label: Exceptions d'agenda
+      - name: ateliers
+        label: Dates des ateliers
         description: >-
-          Par défaut, l'atelier a lieu le 2ème samedi de chaque mois (dates
-          calculées automatiquement). Ajoute une exception ici seulement pour
-          annuler un atelier ou signaler une séance spéciale sur un mois donné.
+          Gère librement ton calendrier : ajoute, modifie, réordonne ou
+          supprime une date — n'importe quel jour (pas seulement le samedi).
+          Seules les dates à venir s'affichent sur le site, triées dans l'ordre.
         type: object
         list: true
         fields:
-          - { name: annee, label: Année, type: number }
-          - { name: mois, label: Mois (1 = janvier … 12 = décembre), type: number }
-          - name: statut
-            label: Statut
-            type: select
-            options:
-              values: [normal, annule, special]
-            default: special
-          - { name: note, label: Note affichée, type: string }
+          - { name: date, label: Date, type: date }
+          - { name: horaire, label: Horaire (laisser vide = horaire par défaut), type: string }
+          - { name: note, label: Note affichée (optionnel), type: string }
+          - { name: annule, label: Atelier annulé, type: boolean, default: false }
       - name: atelier
-        label: Atelier (valeurs par défaut)
+        label: Valeurs par défaut
         type: object
         fields:
-          - { name: horaire, label: Horaire, type: string }
+          - { name: horaire, label: Horaire par défaut, type: string }
           - { name: lieu_ligne1, label: Lieu — ligne 1, type: string }
           - { name: lieu_ligne2, label: Lieu — ligne 2, type: string }
       - name: intro_paragraphes

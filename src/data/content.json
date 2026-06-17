@@ -1,7 +1,11 @@
 {
-  "exceptions": [],
+  "ateliers": [
+    { "date": "2026-07-11", "horaire": "", "note": "", "annule": false },
+    { "date": "2026-08-08", "horaire": "", "note": "", "annule": false },
+    { "date": "2026-09-12", "horaire": "", "note": "", "annule": false }
+  ],
   "atelier": {
-    "horaire": "Samedi · 14h – 18h",
+    "horaire": "14h – 18h",
     "lieu_ligne1": "Place Félix Eboué",
     "lieu_ligne2": "Paris 12e"
   },

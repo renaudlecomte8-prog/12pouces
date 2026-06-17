@@ -1,19 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import content from '../data/content.json';
-import { nextSecondSaturdays } from '../lib/agenda.js';
+import { nextSecondSaturdays, formatDate } from '../lib/agenda.js';
 
-// Agenda auto-calculé (2ème samedi du mois) + fusion avec les exceptions éditées au CMS.
-const ateliers = nextSecondSaturdays(3).map((d) => {
-  const exc = content.exceptions.find(
-    (e) => Number(e.annee) === d.year && Number(e.mois) === d.month
-  );
-  return {
-    ...d,
-    statut: exc?.statut ?? 'normal',
-    note: exc?.note ?? '',
-  };
-});
+// Agenda entièrement géré au CMS : Arno ajoute/modifie/supprime librement ses dates
+// (n'importe quel jour). On n'affiche que les ateliers à venir, triés par date.
+const todayISO = new Date().toISOString().slice(0, 10);
+
+let dates = (content.ateliers ?? [])
+  .filter((a) => a.date && a.date >= todayISO)
+  .sort((a, b) => a.date.localeCompare(b.date));
+
+// Filet de sécurité : si aucune date n'est programmée, on propose les prochains 2èmes samedis.
+if (dates.length === 0) {
+  dates = nextSecondSaturdays(3).map((iso) => ({ date: iso }));
+}
+
+const ateliers = dates.map((a) => ({
+  ...formatDate(a.date),
+  horaire: a.horaire || content.atelier.horaire,
+  note: a.note || '',
+  annule: !!a.annule,
+}));
 ---
 
 <Layout>
@@ -74,30 +82,24 @@ const ateliers = nextSecondSaturdays(3).map((d) => {
       </div>
       <div class="sessions-grid">
         {ateliers.map((a) => (
-          <div class={`session-card${a.statut === 'annule' ? ' session-card--annule' : ''}${a.statut === 'special' ? ' session-card--special' : ''}`}>
+          <div class={`session-card${a.annule ? ' session-card--annule' : ''}`}>
             <div class="session-date">{a.day}</div>
             <div class="session-month">{a.monthName} {a.year}</div>
             <div class="session-info">
-              {a.statut === 'annule' ? (
+              {a.annule ? (
                 <strong class="session-statut">Annulé</strong>
               ) : (
-                <strong>{content.atelier.horaire}</strong>
+                <strong>{a.weekday} · {a.horaire}</strong>
               )}<br />
-              {a.statut === 'annule' ? (
-                a.note && <span>{a.note}</span>
-              ) : (
-                <Fragment>
-                  {content.atelier.lieu_ligne1}<br />
-                  {content.atelier.lieu_ligne2}
-                  {a.statut === 'special' && a.note && <Fragment><br /><span class="session-statut">{a.note}</span></Fragment>}
-                </Fragment>
-              )}
+              {content.atelier.lieu_ligne1}<br />
+              {content.atelier.lieu_ligne2}
+              {a.note && <Fragment><br /><span class="session-statut">{a.note}</span></Fragment>}
             </div>
           </div>
         ))}
       </div>
       <p class="sessions-note">
-        L'atelier a lieu le <strong>2ème samedi de chaque mois</strong> sur la place Félix Eboué. Pas besoin de réserver, viens avec ton vélo !
+        Retrouve toutes nos prochaines dates ci-dessus, sur la place Félix Eboué. Pas besoin de réserver, viens avec ton vélo !
       </p>
     </div>
   </section>
@@ -127,7 +129,7 @@ const ateliers = nextSecondSaturdays(3).map((d) => {
             <div class="location-icon">🕙</div>
             <div class="location-item-text">
               <strong>{content.contact.horaires}</strong>
-              <span>Le 2ème samedi de chaque mois</span>
+              <span>Voir les dates dans l'agenda</span>
             </div>
           </div>
           <div class="location-item">
