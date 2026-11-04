@@ -1,8 +1,17 @@
 {
   "ateliers": [
-    { "date": "2026-07-11", "horaire": "", "note": "", "annule": false },
-    { "date": "2026-08-08", "horaire": "", "note": "", "annule": false },
-    { "date": "2026-09-12", "horaire": "", "note": "", "annule": false }
+    {
+      "date": "2026-11-14",
+      "annule": false
+    },
+    {
+      "date": "2026-12-12",
+      "annule": false
+    },
+    {
+      "date": "2026-09-12",
+      "annule": false
+    }
   ],
   "atelier": {
     "horaire": "14h – 18h",
