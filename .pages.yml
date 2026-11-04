@@ -29,7 +29,7 @@ content:
         type: text
         list: true
       - name: features     
-      - name: photos
+            - name: photos
         label: Photos des ateliers
         type: image
         list: true
