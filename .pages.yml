@@ -35,6 +35,8 @@ content:
         list: true
       - name: features     
         label: Points clés (liste à puces)
+        type: string
+        list: true
       - name: photos
         label: Photos des ateliers
         type: image
