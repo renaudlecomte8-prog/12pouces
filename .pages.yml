@@ -28,7 +28,11 @@ content:
         label: Paragraphes de présentation
         type: text
         list: true
-      - name: features
+      - name: features     
+      - name: photos
+        label: Photos des ateliers
+        type: image
+        list: true
         label: Points clés (liste à puces)
         type: string
         list: true
