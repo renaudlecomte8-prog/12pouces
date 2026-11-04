@@ -30,9 +30,9 @@ content:
         list: true
       - name: features     
             - name: photos
-        label: Photos des ateliers
-        type: image
-        list: true
+              label: Photos des ateliers
+              type: image
+              list: true
         label: Points clés (liste à puces)
         type: string
         list: true
