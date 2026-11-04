@@ -35,6 +35,7 @@ const ateliers = dates.map((a) => ({
       <nav>
         <a href="#atelier">L'atelier</a>
         <a href="#ateliers">Dates</a>
+        <a href="#photos">Photos</a>
         <a href="#localisation">Où ?</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -101,6 +102,24 @@ const ateliers = dates.map((a) => ({
       <p class="sessions-note">
         Retrouve toutes nos prochaines dates ci-dessus, sur la place Félix Eboué. Pas besoin de réserver, viens avec ton vélo !
       </p>
+    </div>
+  </section>
+  <!-- ─── PHOTOS DES ATELIERS ───────────────────────── -->
+  <section id="photos">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">La vie de l'association</p>
+        <h2 class="section-title">Photos des <span style="color: var(--indigo)">ateliers</span></h2>
+        <p>On répare, on apprend et on partage ensemble ! Découvrez nos ateliers en images.</p>
+      </div>
+
+      <div class="photos-grid">
+        {(content.photos ?? []).map((photo) => (
+          <a href={photo} target="_blank" rel="noopener">
+            <img src={photo} alt="Photo d'un atelier 12 Pouces" loading="lazy" />
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -173,4 +192,30 @@ const ateliers = dates.map((a) => ({
       Kiosque Citoyen, Place Félix Eboué · 75012 Paris
     </span>
   </footer>
+<style>
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .photos-grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .photos-grid img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .photos-grid a:hover img {
+    transform: scale(1.04);
+  }
+</style>
 </Layout>
